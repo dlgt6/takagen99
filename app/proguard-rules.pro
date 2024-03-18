@@ -215,6 +215,12 @@
 # magnet：解决模拟器推送 磁力链接 闪退
 -keep class com.xunlei.downloadlib.** {*;}
 
+# python引擎
+-keep public class com.undcover.freedom.pyramid.** { *; }
+-dontwarn com.undcover.freedom.pyramid.**
+-keep public class com.chaquo.python.** { *; }
+-dontwarn com.chaquo.python.**
+
 # quickjs引擎
 -keep class com.whl.quickjs.** {*;}
 
