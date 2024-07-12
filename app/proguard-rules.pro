@@ -220,6 +220,12 @@
 # quickjs引擎
 -keep class com.whl.quickjs.** {*;}
 
+# python引擎
+-keep public class com.undcover.freedom.pyramid.** { *; }
+-dontwarn com.undcover.freedom.pyramid.**
+-keep public class com.chaquo.python.** { *; }
+-dontwarn com.chaquo.python.**
+
 # 支持影视的ali相关的jar
 -keep class com.google.gson.**{*;}
 # 某些类会反射调用zxing导致生成阿里云二维码报错
