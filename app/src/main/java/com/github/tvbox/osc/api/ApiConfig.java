@@ -705,6 +705,9 @@ public class ApiConfig {
     } catch (Exception e) {
         e.printStackTrace();
     }
+        if ("js".equals(param.get("do"))) {
+            return jsLoader.proxyInvoke(param);
+        }
         return jarLoader.proxyInvoke(param);
     }
 
