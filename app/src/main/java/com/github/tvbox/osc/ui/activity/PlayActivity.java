@@ -1273,6 +1273,7 @@ public class PlayActivity extends BaseActivity {
     private int autoRetryCount = 0;
 
     boolean autoRetry() {
+        switchPlayer();
         if (loadFoundVideoUrls != null && loadFoundVideoUrls.size() > 0) {
             autoRetryFromLoadFoundVideoUrls();
             return true;
@@ -1286,7 +1287,18 @@ public class PlayActivity extends BaseActivity {
             return false;
         }
     }
-
+    void switchPlayer() {
+        try {
+            int playerType = mVodPlayerCfg.getInt("pl") == 1 ? 2 : 1;
+            mVodPlayerCfg.put("pl", playerType);
+            mController.setPlayerConfig(mVodPlayerCfg);
+            mVodInfo.playerCfg = mVodPlayerCfg.toString();
+            EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_REFRESH, mVodPlayerCfg));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     void autoRetryFromLoadFoundVideoUrls() {
         String videoUrl = loadFoundVideoUrls.poll();
         HashMap<String, String> header = loadFoundVideoUrlsHeader.get(videoUrl);
